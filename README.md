@@ -1,7 +1,7 @@
-vnet
-====
+vnet_nowyouseeme
+================
 
-deployment of image serving application across vm network
+Dployment of image serving application (nowyouseeme.com) across vm network
 
 by Charisse Gebhart for Virtualisation subject
 
