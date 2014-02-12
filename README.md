@@ -1,7 +1,7 @@
 vnet
 ====
 
-deployment of vm network-image serving application
+deployment of image serving application across vm network
 
 by Charisse Gebhart for Virtualisation subject
 
