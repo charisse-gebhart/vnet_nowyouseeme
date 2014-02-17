@@ -1,8 +1,8 @@
 <?php
 $file_type = $_FILES["file"]["type"]; // Returns MIME type
-$allowedTypes = array("image/jpg");   // jpg files only
+$allowedTypes = array("image/jpg","image/jpeg", "image/png", "image/gif");   // jpg, jpeg, png and gif files only
 
-if(!in_array($file_type, $allowedTypes)) // check if jpg
+if(!in_array($file_type, $allowedTypes)) // check if file type is one of the allowed formats
 {
 echo "Only jpg files allowed";
 }

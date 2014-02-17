@@ -1,11 +1,13 @@
+/* Stylesheet for Now You See Me photo gallery by Charisse Gebhart
+   Based on CSS from dwuser.com\education\content\creating-
+   responsive-tiled-layout-with-pure-css */
+
 body {
-    margin:0;
-    padding:0;
-    color:blue;
-    font:24px arial, sans-serif;
+    color:white;
+    background-color:black;
+    font:20px sans-serif;
 }
 
-/*
 .wrap {
     overflow:hidden;
     margin:10px;
@@ -36,7 +38,7 @@ body {
     bottom:0;
     left:0:
     right:0;
-    margin-bottom:-50px;
+    margin-bottom:-10px;
     background:#000;
     background:rgba(0,0,0,0.5);
     color:#FFF;
@@ -47,4 +49,3 @@ body {
     -o-transition:all 0.3s ease-out;
     transition:all 0.3s ease-out;
 }
-*/
