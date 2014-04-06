@@ -7,14 +7,18 @@
 * @date 2014-02-16
 */
 
+header('Content-type: text/html; charset=utf-8');
 $fileTotal = count(glob("images/*")); // counts total number of image files in the dir so a random selection can be chosen from all images
 $imgArray = glob("images/*");
+shuffle($imgArray);
+$ShuffleIndex=0;
+$ThisPhoto=0;
 
-?><!DOCTYPE html>
+?>
 
 <html lang="en">
      <head>
-          <meta charset="UTF-8">
+          <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
           <title>Now You See Me! - Your Photos in the Cloud</title>
           <link rel="stylesheet" type="text/css" href="nysm.css">
 	  <script src="https://code.jquery.com/jquery-git1.min.js"></script>
@@ -31,71 +35,32 @@ $imgArray = glob("images/*");
   
          <h1>Now You See Me</h1>
   
-  <div class="wrap">
-    <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-      <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-    <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-    <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-    <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-    <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-    <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-    <div class="box">
-      <div class="boxInner">
-        <?php echo "<a href='view.php?id="; $random = rand(1,$fileTotal-1); echo substr($imgArray[$random],7,strlen($imgArray[$random])-11) .
-                   "'><img src='" . $imgArray[$random] . "' alt='" . $imgArray[$random] . "'></a>"; ?>
-        <div class="titleBox"><?php echo substr($imgArray[$random],7,strlen($imgArray[$random])-11); ?></div>
-      </div>  
-    </div>
-  
-  </div> <!--end wrap-->
+  <div class="grid">
+	<table>
+		<? for($row = 0; $row < 3; $row++) { ?>
+    		<tr>
+			<? for ($col = 0; $col < 4; $col++) { ?>
+			<td>
+				<? 	$ThisPhoto = $ShuffleIndex++; 
+					echo "<a href='view.php?id=" . 
+						substr($imgArray[$ThisPhoto],7,strlen($imgArray[$ThisPhoto])-11) . 
+						"'><img src='" . 
+						$imgArray[$ThisPhoto] . 
+						"' style='width:150px;height:150px;' alt='" . 
+						substr($imgArray[$ThisPhoto],7,strlen($imgArray[$ThisPhoto])-11) . 
+						"'></a>"; ?>
+			</td>
+			<? } ?>
+		</tr>
+		<? } ?>
+	</table>
+
+  </div> <!--end grid-->
 
   <div class="upload">
     <form id="uploads" action="upload_file.php" method="post" enctype="multipart/form-data">
-      <label for="file">Upload a New Photo:</label>
+      <label for="file">Upload a New Photo:</label><br>
       <input type="file" name="file[]" id="file"><br>
-     <!-- <label>Enter a Caption<input type="text" name="title" id="title"></label><br>-->
       <input type="submit" name="submit" value="Upload">
     </form>
   </div>
