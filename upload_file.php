@@ -28,7 +28,7 @@ if ($_FILES && isset($_FILES['file'])) { // when upload occurs
 	//    echo "Error: " . $_FILES['file']['error'] . "<br/>"
 	//} else continue;
 
-  	echo "Saving $id.$ext...<br/>";
+  	echo "Saved as $id.$ext<br/>";
 	//set_time_limit(300); //extend time limit by 5 minutes to allow larger file uploads
 	move_uploaded_file($tmp,"images/$id.$ext");
     }
