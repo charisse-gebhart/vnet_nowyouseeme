@@ -1,13 +1,20 @@
 #!/bin/bash
 sudo apt-get update
 sudo apt-get -y install apache2 php5 libapache2-mod-php5
-sudo apt-get -y install imagemagick
+#sudo apt-get -y install imagemagick
 sudo apt-get -y install git
-sudo echo 127.0.0.1 nowyouseeme.com >> /etc/hosts
-git clone https://github.com/git/git
-git config --global user.name charisse-gebhart
-git config --global user.email charisse_gebhart@hotmail.com
-ssh-keygen -t rsa -C charisse_gebhart@hotmail.com
-ssh -T git@github.com
+
+# edit php.ini file to allow large uploads
+sudo echo "upload_max_filesize = 100M" >> /etc/php5/apache2/php.ini
+sudo /etc/init.d/apache2 reload
+
+# create fake host on local machine
+sudo echo "127.0.0.1 nowyouseeme.com" >> /etc/hosts
+sudo echo "DocumentRoot /var/www" >> /etc/apache2/sites-available/default
+sudo echo "DirectoryIndex info.php" >> /etc/apache2/sites-available/default
+
+# pull in ISS from github repo
 git clone git@github.com:charisse-gebhart/vnet_nowyouseeme.git
-while alive do git pull nysm; sleep 3600; done
+
+# Update ISS from repo every hour
+while alive do git pull vnet_nowyouseeme; sleep 3600; done
