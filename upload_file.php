@@ -29,7 +29,7 @@ if ($_FILES && isset($_FILES['file'])) { // when upload occurs
 	//} else continue;
 
   	echo "Saving $id.$ext...<br/>";
-	set_time_limit(300); //extend time limit by 5 minutes to allow larger file uploads
+	//set_time_limit(300); //extend time limit by 5 minutes to allow larger file uploads
 	move_uploaded_file($tmp,"images/$id.$ext");
     }
 }?><!DOCTYPE html>
